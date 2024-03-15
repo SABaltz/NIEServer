@@ -1,8 +1,50 @@
+@base-color: #007bff; // Base color for the website
+@secondary-color: #ffc107; // Secondary color for buttons
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; // Light background color
 }
 
-a {
-  color: #00B7FF;
+header {
+  background-color: @base-color;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+a.download-button {
+  display: inline-block;
+  background-color: @secondary-color;
+  color: #fff;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+a.download-button:hover {
+  background-color: darken(@secondary-color, 10%);
+}
+
+footer {
+  background-color: @base-color;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
