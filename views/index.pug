@@ -8,6 +8,6 @@ block content
     ul
         each item in fileArray
             li
-                a(href=`${item.replace(/\.pdf$/, "")}`)= item
+                a(href=`${item}`)= item
 
-    a(href="/download", class="download-button") Download National Intelligence Estimates
+    //a(href="/download", class="download-button") Download National Intelligence Estimates

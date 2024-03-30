@@ -8,7 +8,7 @@ const directoryPath = path.join(__dirname, '../public/files');
 let fileArray = []
 fs.readdir(directoryPath, function (err, files) {
     files.forEach(file => {
-        fileArray.push(file)
+        fileArray.push(file.replace(/\.pdf$/, ""))
     });
 });
 
