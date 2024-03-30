@@ -1,7 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p National Intelligence Estimates (NIEs) are documents prepared by the National Intelligence Council that provide the United States Government's most authoritative assessment of major national security issues. They represent the collective judgment of the Intelligence Community and are used to inform policymakers.
-  p This website provides access to known and public NIEs created by the US government.
-  a(href="/download", class="download-button") Download National Intelligence Estimates
+    h1= title
+    p National Intelligence Estimates (NIEs) are documents prepared by the National Intelligence Council that provide the United States Government's most authoritative assessment of major national security issues. They represent the collective judgment of the Intelligence Community and are used to inform policymakers.
+    p This website provides access to known and public NIEs created by the US government.
+
+    ul
+        each item in fileArray
+            li
+                a(href=`${item.replace(/\.pdf$/, "")}`)= item
+
+    a(href="/download", class="download-button") Download National Intelligence Estimates

@@ -3,18 +3,21 @@ var router = express.Router();
 const path = require('path');
 const fs = require('fs');
 /* GET home page. */
-router.get('/', function (req, res, next) {
-    res.render('index', {title: 'US National Intelligence Estimates'});
-});
-
-
-router.get('/test', function (req, res, next) {
-    console.log()
-    res.render('pdf', {title: 'title', pdfLocation: 'files/test.pdf'});
-
-});
 
 const directoryPath = path.join(__dirname, '../public/files');
+let fileArray = []
+fs.readdir(directoryPath, function (err, files) {
+    files.forEach(file => {
+        fileArray.push(file)
+    });
+});
+
+
+router.get('/', function (req, res, next) {
+    console.log(fileArray)
+    res.render('index', {title: 'US National Intelligence Estimates', fileArray: fileArray});
+
+});
 
 fs.readdir(directoryPath, function (err, files) {
     files.forEach(file => {
