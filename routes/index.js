@@ -1,32 +1,29 @@
 var express = require('express');
-const {readdir} = require("fs");
-const {join} = require("path");
 var router = express.Router();
-
+const path = require('path');
+const fs = require('fs');
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', {title: 'US National Intelligence Estimates'});
 });
 
-// const directoryPath = join(__dirname, 'files/');
-// readdir(directoryPath, function (err, files) {
-// if (err) {
-//     return console.log('Unable to scan directory: ' + err);
-// }
-// files.forEach(function (file) {
-//     router.get(`/${file.replace(/\.pdf$/, "")}`, function (req, res, next) {
-//         res.render('pdf', {pdfpath: file, pdfname: file});
-//     });
-// })
-// router.get('/test', function (req, res, next) {
-//     res.render('pdf', {pdfname: 'test'})
-// })
-
-// })
-
 
 router.get('/test', function (req, res, next) {
-    res.render('pdf', {title: 'US National Intelligence Estimates'});
+    console.log()
+    res.render('pdf', {title: 'title', pdfLocation: 'files/test.pdf'});
+
 });
+
+const directoryPath = path.join(__dirname, '../public/files');
+
+fs.readdir(directoryPath, function (err, files) {
+    files.forEach(file => {
+        let file_without_extension = file.replace(/\.pdf$/, "")
+        router.get(`/${file_without_extension}`, function (req, res, next) {
+            res.render('pdf', {title: `${file_without_extension}`, pdfLocation: 'files/test.pdf'});
+        });
+    })
+});
+
 
 module.exports = router;
