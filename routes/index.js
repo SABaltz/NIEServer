@@ -19,8 +19,9 @@ const directoryPath = path.join(__dirname, '../public/files');
 fs.readdir(directoryPath, function (err, files) {
     files.forEach(file => {
         let file_without_extension = file.replace(/\.pdf$/, "")
+        let file_location = 'files/' + file
         router.get(`/${file_without_extension}`, function (req, res, next) {
-            res.render('pdf', {title: `${file_without_extension}`, pdfLocation: 'files/test.pdf'});
+            res.render('pdf', {title: `${file_without_extension}`, pdfLocation: file_location});
         });
     })
 });
