@@ -12,6 +12,16 @@ fs.readdir(directoryPath, function (err, files) {
     });
 });
 
+router.use((req, res, next) => {
+    // Log the IP address of the visitor
+    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    console.log(`New visit from IP: ${ip}`);
+
+    // Log the visit to a file for tracking
+    fs.appendFileSync('visits.log', `${ip}\n`);
+
+    next();
+});
 
 router.get('/', function (req, res, next) {
     console.log(fileArray)
