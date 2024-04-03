@@ -15,7 +15,6 @@ fs.readdir(directoryPath, function (err, files) {
 router.use((req, res, next) => {
     // Log the IP address of the visitor
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    console.log(`New visit from IP: ${ip}`);
 
     // Log the visit to a file for tracking
     fs.appendFileSync('visits.log', `${ip}\n`);
@@ -24,7 +23,6 @@ router.use((req, res, next) => {
 });
 
 router.get('/', function (req, res, next) {
-    console.log(fileArray)
     res.render('index', {title: 'US National Intelligence Estimates', fileArray: fileArray});
 
 });
