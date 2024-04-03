@@ -29,6 +29,12 @@ router.get('/', function (req, res, next) {
 
 });
 
+
+router.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.send("User-agent: *\nDisallow: /");
+});
+
 fs.readdir(directoryPath, function (err, files) {
     files.forEach(file => {
         let file_without_extension = file.replace(/\.pdf$/, "")
